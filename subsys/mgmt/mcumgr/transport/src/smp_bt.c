@@ -223,6 +223,8 @@ static void conn_param_smp_enable(struct bt_conn *conn)
 	}
 }
 
+bool rvmn_auth_is_authenticated(struct bt_conn *conn);
+
 /**
  * Write handler for the SMP characteristic; processes an incoming SMP request.
  */
@@ -232,6 +234,11 @@ static ssize_t smp_bt_chr_write(struct bt_conn *conn,
 				uint8_t flags)
 {
 	struct conn_param_data *cpd = conn_param_data_get(conn);
+
+	if (!rvmn_auth_is_authenticated(conn)) {
+		return BT_GATT_ERR(BT_ATT_ERR_AUTHORIZATION);
+	}
+
 #ifdef CONFIG_MCUMGR_SMP_REASSEMBLY_BT
 	int ret;
 	bool started;
