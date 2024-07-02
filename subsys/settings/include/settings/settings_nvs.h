@@ -58,7 +58,7 @@ int settings_nvs_dst(struct settings_nvs *cf);
 
 /* Initialize a nvs backend. */
 int settings_nvs_backend_init(struct settings_nvs *cf);
-
+int settings_nv_backend_init(void);
 
 #ifdef __cplusplus
 }
