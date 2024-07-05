@@ -471,5 +471,5 @@ int settings_line_load_cb(const char *name, void *val_read_cb_ctx, off_t off,
 	len = settings_line_val_get_len(arg_w_storage_type->storage_type, off, val_read_cb_ctx);
 
 	return settings_call_set_handler(name, len, settings_line_read_cb,
-					 &value_ctx, arg);
+					 &value_ctx, &arg);
 }
